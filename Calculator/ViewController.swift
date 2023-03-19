@@ -37,23 +37,16 @@ class ViewController: UIViewController {
             fatalError("Cannot convert sender current title into String")
         }
         
-        if isFinishedTypingNumber {
-            displayLabel.text = numButtonStringValue
+        if isFinishedTypingNumber { //first typed digit of new number
             isFinishedTypingNumber = false
-            
-            if numButtonStringValue == "." {
-                displayLabel.text = "0" + numButtonStringValue
-            } else {
-                displayLabel.text = numButtonStringValue
-            }
+            displayLabel.text = numButtonStringValue == "." ? "0." : numButtonStringValue
         } else {
             if numButtonStringValue == "." {
                 if !displayStringValue.contains(".") {
                     displayLabel.text = displayStringValue + numButtonStringValue
                 }
-
             } else {
-                displayLabel.text = displayStringValue + numButtonStringValue
+                displayLabel.text = displayStringValue == "0" ? numButtonStringValue : displayStringValue + numButtonStringValue
             }
         }
     }
